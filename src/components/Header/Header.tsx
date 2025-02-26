@@ -3,6 +3,8 @@ import { Button } from "../Button/Button";
 import logo from "../../../public/img/logo-min.jpg";
 
 export const Header = () => {
+  const onClick = () => console.log("click");
+
   return (
     <header className={styles.header}>
       <div className={styles.logoWrapper}>
@@ -10,7 +12,7 @@ export const Header = () => {
       </div>
       <div className={styles.loginWrapper}>
         <p className={styles.userName}>Dave</p>
-        <Button name="Login" variant="outlined" size="large"/>
+        <Button name="Login" size="small" onClick={onClick} />
       </div>
     </header>
   );
