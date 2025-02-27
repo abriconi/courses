@@ -1,5 +1,5 @@
 import styles from "./Card.module.scss";
-import { Button } from "../../Button/Button";
+import { Button } from "../../common/Button/Button";
 import {
   getAuthorNames,
   dateFormatter,
@@ -40,7 +40,13 @@ export const Card: React.FC<CardType> = ({ course, authors }) => {
             Created: <span>{creationDate}</span>
           </p>
         </div>
-        <Button name="Show Course" size="large" onClick={showCourse} align aria-label="Show Course" />
+        <Button
+          name="Show Course"
+          size="large"
+          onClick={showCourse}
+          align
+          aria-label="Show Course"
+        />
       </div>
     </div>
   );

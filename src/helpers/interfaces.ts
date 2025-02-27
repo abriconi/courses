@@ -1,4 +1,4 @@
-export interface Course {
+export interface CourseType {
     id: string;
     title: string;
     description: string;
@@ -6,7 +6,7 @@ export interface Course {
     duration: number;
     authors: string[];
 }
-export interface Author {
+export interface AuthorType {
     id: string;
     name: string;
 }

@@ -1,4 +1,4 @@
-import { Author } from "./interfaces";
+import { AuthorType } from "./interfaces";
 
 export const durationFormatter= (duration: number): string  => {
     const hours = Math.floor(duration / 60);
@@ -14,7 +14,7 @@ export const dateFormatter = (input: string): string => {
     return `${day}.${month}.${year}`;
 }
 
-export const getAuthorNames = (authorIds: string[], authors: Author[]): string => 
+export const getAuthorNames = (authorIds: string[], authors: AuthorType[]): string => 
     authorIds
         .map(id => authors.find(author => author.id === id)?.name || "Unknown")
         .join(", ");

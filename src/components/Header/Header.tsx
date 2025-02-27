@@ -1,6 +1,6 @@
 import styles from "./Header.module.scss";
-import { Button } from "../Button/Button";
-import logo from "../../../public/img/logo-min.jpg";
+import { Button } from "../common/Button/Button";
+import logo from "../../img/logo-min.jpg";
 
 export const Header = () => {
   const onClick = () => console.log("click");
