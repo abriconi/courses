@@ -1,3 +1,4 @@
+@use "../../../assets/variables" as *;
 .categoryName {
     font-weight: 600;
 }
@@ -9,6 +10,10 @@ span {
     flex-direction: row;
     justify-content: space-between;
     gap: 30px;
+    border: $border;
+    border-radius: $border-radius;
+    border-color: $secondary-color;
+    padding: 15px;
 
     .mainInfo {
         display: flex;

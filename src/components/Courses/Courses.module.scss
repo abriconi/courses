@@ -1,0 +1,11 @@
+@use "../../assets/variables" as *;
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    border: $border;
+    border-color: $primary-color;
+    border-radius: $border-radius;
+}

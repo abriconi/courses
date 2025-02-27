@@ -17,13 +17,10 @@ export const Card: React.FC<CardType> = ({ course, authors }) => {
   const showCourse = () => console.log("Show course");
   const authorNames = useMemo(
     () => getAuthorNames(course.authors, authors),
-    [course, course],
+    [course, authors],
   );
-  const duration = useMemo(() => durationFormatter(course.duration), [course]);
-  const creationDate = useMemo(
-    () => dateFormatter(course.creationDate),
-    [course],
-  );
+  const duration = durationFormatter(course.duration);
+  const creationDate = dateFormatter(course.creationDate);
 
   return (
     <div className={styles.wrapper}>
@@ -34,7 +31,7 @@ export const Card: React.FC<CardType> = ({ course, authors }) => {
       <div className={styles.additionalInfo}>
         <div className={styles.courseInfo}>
           <p className={styles.categoryName}>
-            Authors: <span>{authorNames}</span>
+            Authors: <span>{authorNames || "Unknown"}</span>
           </p>
           <p className={styles.categoryName}>
             Duration: <span>{duration}</span>
@@ -43,7 +40,7 @@ export const Card: React.FC<CardType> = ({ course, authors }) => {
             Created: <span>{creationDate}</span>
           </p>
         </div>
-        <Button name="Show Course" size="large" onClick={showCourse} align />
+        <Button name="Show Course" size="large" onClick={showCourse} align aria-label="Show Course" />
       </div>
     </div>
   );
