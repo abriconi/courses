@@ -5,12 +5,13 @@ import {
   dateFormatter,
   durationFormatter,
 } from "../../../helpers";
-import { Author, Course } from "../../../helpers/interfaces";
+import { AuthorType, CourseType } from "../../../helpers/interfaces";
 import { useMemo } from "react";
+import { BUTTON_TEXT, COURSE_INFO } from "../../../helpers/constants";
 
 interface CardType {
-  course: Course;
-  authors: Author[];
+  course: CourseType;
+  authors: AuthorType[];
 }
 
 export const Card: React.FC<CardType> = ({ course, authors }) => {
@@ -31,17 +32,17 @@ export const Card: React.FC<CardType> = ({ course, authors }) => {
       <div className={styles.additionalInfo}>
         <div className={styles.courseInfo}>
           <p className={styles.categoryName}>
-            Authors: <span>{authorNames || "Unknown"}</span>
+            {COURSE_INFO.authors}: <span>{authorNames || "Unknown"}</span>
           </p>
           <p className={styles.categoryName}>
-            Duration: <span>{duration}</span>
+            {COURSE_INFO.duration}: <span>{duration}</span>
           </p>
           <p className={styles.categoryName}>
-            Created: <span>{creationDate}</span>
+            {COURSE_INFO.creationDate}: <span>{creationDate}</span>
           </p>
         </div>
         <Button
-          name="Show Course"
+          name={BUTTON_TEXT.showCourse}
           size="large"
           onClick={showCourse}
           align

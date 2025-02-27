@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "../../common/Button/Button";
 import styles from "./SearchBar.module.scss";
 import { Input } from "../../common/Input/Input";
+import { BUTTON_TEXT, TEXTAREA } from "../../../helpers/constants";
 
 interface SearchBarType {
   searchQuery: string;
@@ -21,11 +22,11 @@ export const SearchBar: React.FC<SearchBarType> = ({
   return (
     <div className={styles.wrapper}>
       <Input
-        placeholderText={"Enter course name"}
+        placeholderText={TEXTAREA.enterTitle}
         onChange={handleChange}
         value={searchQuery}
       />
-      <Button name="Search" size="large" onClick={onClick} />
+      <Button name={BUTTON_TEXT.search} size="large" onClick={onClick} />
     </div>
   );
 };

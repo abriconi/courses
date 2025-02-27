@@ -1,6 +1,7 @@
 import styles from "./Header.module.scss";
 import { Button } from "../common/Button/Button";
 import logo from "../../img/logo-min.jpg";
+import { LOGIN_TEXT } from "../../helpers/constants";
 
 export const Header = () => {
   const onClick = () => console.log("click");
@@ -12,7 +13,7 @@ export const Header = () => {
       </div>
       <div className={styles.loginWrapper}>
         <p className={styles.userName}>Dave</p>
-        <Button name="Login" size="small" onClick={onClick} />
+        <Button name={LOGIN_TEXT.login} size="small" onClick={onClick} />
       </div>
     </header>
   );
