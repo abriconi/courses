@@ -1,0 +1,34 @@
+@use "../../../assets/variables" as *;
+
+
+.authorWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .header {
+        font-size: $font-size-medium;
+        align-self: center;
+    }
+    .authorList {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        margin: 0;
+
+        .authorItem {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center;
+            list-style: none;
+        }
+    }
+    .courseAuthors {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+}

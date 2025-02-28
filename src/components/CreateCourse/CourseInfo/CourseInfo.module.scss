@@ -1,0 +1,30 @@
+@use "../../../assets/variables" as *;
+
+
+    
+.mainInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+
+    .mainInfoItem {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+
+        .header {
+            font-size: $font-size-medium;
+        }
+    }
+
+    .duration {
+        font-size: $font-size-medium;
+    }
+}
+
+
+
+
+
+

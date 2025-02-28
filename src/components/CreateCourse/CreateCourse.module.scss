@@ -1,0 +1,43 @@
+@use "../../assets/variables" as *;
+h1 {
+    font-size: $font-size-large;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    padding: 25px;
+    border: $border;
+    border-color: $primary-color;
+    border-radius: $border-radius;
+
+    .createTitle {
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .inputWrapper {
+            width: 30%;
+        }
+    }
+
+    .infoWrapper {
+        border: $border;
+        border-radius: $border-radius;
+        border-color: $secondary-color;
+        display: flex;
+        flex-direction: row;
+        gap: 25px;
+        padding: 15px;
+
+        .container {
+            width: 100%;
+        }
+    }
+
+
+    
+}
