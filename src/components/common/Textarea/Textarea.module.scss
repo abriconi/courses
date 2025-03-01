@@ -1,27 +1,27 @@
 @use "../../../assets/variables" as *;
-
-.inputWrapper {
+.wrapper {
     display: flex;
     flex-direction: column;
     width: 100%;
-
+    
     .title {
         font-size: $font-size-small;
         padding-bottom: 8px;
     }
-    .input {
+    .textarea {
         border: $border;
         border-radius: $border-radius;
         border-color: $secondary-color;
         box-sizing: border-box;
+        font-size: $font-size-small;
+        resize: vertical;
         padding: 8px 12px;
-        line-height: 1;
-        height: 40px;
     
         &:focus {
             outline: none;
             border: $border-focus;
             border-color: $primary-color;
+
             &::placeholder {
                 color: transparent;
             }
@@ -34,5 +34,3 @@
         }
     }
 }
-
-
