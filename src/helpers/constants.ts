@@ -10,7 +10,7 @@ export enum BUTTON_TEXT {
     createAuthor = "Create author",
     addAuthor = "Add author",
 }
-export enum TEXTAREA {
+export enum PLACEHOLDER {
     enterTitle = "Enter course name",
     enterDescr = "Enter description",
     enterAuthor = "Enter author name",
@@ -23,7 +23,16 @@ export enum COURSE_INFO {
     duration = "Duration",
     creationDate = "Creation date",
     authors = "Authors",
+    courseAuthors = "Course authors",
 }
-export enum Errors {
+export enum LABEL_TEXT {
+    title = "Title",
+    description = "Description",
+    authorName = "Author name",
+    duration = "Duration",
+}
 
+export enum ROUTES {
+    home = "/",
+    courses = "/create-courses",
 }

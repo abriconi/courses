@@ -1,13 +1,16 @@
-import { BUTTON_TEXT, LABEL_TEXT, PLACEHOLDER } from "../../helpers/constants";
+import { useNavigate } from "react-router-dom";
+import { BUTTON_TEXT, LABEL_TEXT, PLACEHOLDER, ROUTES } from "../../helpers/constants";
 import { Button } from "../common/Button/Button";
 import { Input } from "../common/Input/Input";
 import { Textarea } from "../common/Textarea/Textarea";
 import { AuthorInfo } from "./AuthorInfo/AuthorInfo";
 import { CourseInfo } from "./CourseInfo/CourseInfo";
 import styles from "./CreateCourse.module.scss";
+import { useCallback } from "react";
 
 export const CreateCourse = () => {
-  const onClick = () => console.log("Click");
+  const navigate = useNavigate();
+  const handleClick = useCallback(() => navigate(ROUTES.home),[navigate]);
 
   return (
     <div className={styles.wrapper}>
@@ -21,9 +24,9 @@ export const CreateCourse = () => {
         </div>
 
         <Button
-          name={BUTTON_TEXT.addNewCourse}
+          name={BUTTON_TEXT.createCourse}
           size="small"
-          onClick={onClick}
+          onClick={handleClick}
         />
       </div>
 
