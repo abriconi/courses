@@ -66,12 +66,15 @@ export const CourseForm: React.FC<CourseFormProps> = ({
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formWrapper}>
       <div className={styles.createTitle}>
-        <Input
-          labelText={LABEL_TEXT.title}
-          placeholderText={PLACEHOLDER.enterTitle}
-          control={control}
-          name="title"
-        />
+        <div className={styles.createTitle__inputWrapper}>
+          <Input
+            labelText={LABEL_TEXT.title}
+            placeholderText={PLACEHOLDER.enterTitle}
+            control={control}
+            name="title"
+          />
+        </div>
+
         <Button name={BUTTON_TEXT.createCourse} type="submit" />
       </div>
 
@@ -82,27 +85,33 @@ export const CourseForm: React.FC<CourseFormProps> = ({
         name="description"
       />
 
-      <CreateAuthor onAddAuthor={onAddNewAuthor} />
+      <div className={styles.authors}>
+        <div className={styles.authors__create}>
+          <CreateAuthor onAddAuthor={onAddNewAuthor} />
 
-      <div className={styles.durationWrapper}>
-        <Input
-          labelText={LABEL_TEXT.duration}
-          placeholderText={PLACEHOLDER.enterDuration}
-          control={control}
-          name="duration"
-        />
-        <p className={styles.durationOutput}>
-          Duration: <span>{durationFormatter(watchDuration)} hours</span>
-        </p>
+          <div className={styles.duration}>
+            <Input
+              labelText={LABEL_TEXT.duration}
+              placeholderText={PLACEHOLDER.enterDuration}
+              control={control}
+              name="duration"
+            />
+            <p className={styles.duration__text}>
+              Duration: <span>{durationFormatter(watchDuration)} hours</span>
+            </p>
+          </div>
+        </div>
+
+        <div className={styles.authors__add}>
+          <AuthorsList authors={authors} onAddAuthor={addAuthor} />
+          <SelectedAuthors
+            pickedAuthors={pickedAuthors}
+            onDeleteAuthor={deleteAuthor}
+          />
+
+          <Button name={BUTTON_TEXT.addAuthor} onClick={onCancel} />
+        </div>
       </div>
-
-      <AuthorsList authors={authors} onAddAuthor={addAuthor} />
-      <SelectedAuthors
-        pickedAuthors={pickedAuthors}
-        onDeleteAuthor={deleteAuthor}
-      />
-
-      <Button name={BUTTON_TEXT.addAuthor} onClick={onCancel} />
     </form>
   );
 };
