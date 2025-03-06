@@ -1,43 +1,104 @@
 @use "../../assets/variables" as *;
-h1 {
-    font-size: $font-size-large;
-}
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  padding: 25px;
+  border: $border;
+  border-color: $primary-color;
+  border-radius: $border-radius;
+
+  .createTitle {
     display: flex;
-    flex-direction: column;
-    gap: 25px;
+    flex-direction: row;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    .createTitle__inputWrapper {
+      width: 30%;
+    }
+  }
+
+
+  .authorsSection {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
     padding: 25px;
     border: $border;
     border-color: $primary-color;
     border-radius: $border-radius;
 
-    .createTitle {
+    .authorsSection__sectionItem {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+
+      .durationWrapper {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         gap: 15px;
-        justify-content: space-between;
-        align-items: flex-end;
 
-        .inputWrapper {
-            width: 30%;
-        }
+        .durationOutput {
+            font-size: $font-size-large;
+          }
+      }
+    }
+  }
+
+  .authors {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .authors__header {
+      align-self: center;
+      font-size: $font-size-large;
     }
 
-    .infoWrapper {
-        border: $border;
-        border-radius: $border-radius;
-        border-color: $secondary-color;
+    .authors__authorsWrapper {
+      display: flex;
+      flex-direction: column;
+
+      .authors__addAuthorSection {
         display: flex;
-        flex-direction: row;
-        gap: 25px;
-        padding: 15px;
+        flex-direction: column;
 
-        .container {
-            width: 100%;
+        .authors__authorList {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          margin: 0;
+          padding: 0;
+
+          .authors__authorItemWrapper {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 10px;
+            list-style: none;
+          }
         }
+      }
+
+      .authors__selectedAuthorsSection {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        .authors__selectedAuthorsSection__header {
+          font-size: $font-size-medium;
+        }
+
+        .authors__selectedAuthorsSection__selectedAuthorItem {
+          display: flex;
+          flex-direction: row;
+          gap: 10px;
+          justify-content: space-between;
+        }
+      }
     }
-
-
-    
+  }
 }

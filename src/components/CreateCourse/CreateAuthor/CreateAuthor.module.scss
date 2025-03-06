@@ -1,0 +1,11 @@
+@use "../../../assets/variables" as *;
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .header {
+        align-self: center;
+        font-size: $font-size-large;
+    }
+}

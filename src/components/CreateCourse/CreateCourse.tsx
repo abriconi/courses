@@ -1,48 +1,32 @@
 import { useNavigate } from "react-router-dom";
-import { BUTTON_TEXT, LABEL_TEXT, PLACEHOLDER, ROUTES } from "../../helpers/constants";
-import { Button } from "../common/Button/Button";
-import { Input } from "../common/Input/Input";
-import { Textarea } from "../common/Textarea/Textarea";
-import { AuthorInfo } from "./AuthorInfo/AuthorInfo";
-import { CourseInfo } from "./CourseInfo/CourseInfo";
+import { useState, useCallback } from "react";
+import { AuthorType } from "../../helpers/interfaces";
+import { createDate } from "../../helpers";
+import { mockedAuthorsList } from "../../helpers/mockedData";
+import { ROUTES } from "../../helpers/constants";
 import styles from "./CreateCourse.module.scss";
-import { useCallback } from "react";
+import { CourseForm } from "./components/CourseForm/CourseForm";
+
 
 export const CreateCourse = () => {
   const navigate = useNavigate();
-  const handleClick = useCallback(() => navigate(ROUTES.home),[navigate]);
+  const handleClick = useCallback(() => navigate(ROUTES.home), [navigate]);
+  const creationDate = createDate();
+
+  const [authors, setAuthors] = useState<AuthorType[]>(mockedAuthorsList);
+
+  const addNewAuthor = (author: AuthorType) => {
+    setAuthors((prev) => [...prev, author]);
+  };
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.createTitle}>
-        <div className={styles.inputWrapper}>
-          <Input
-            labelText={LABEL_TEXT.title}
-            placeholderText={PLACEHOLDER.enterTitle}
-            value={""}
-          />
-        </div>
-
-        <Button
-          name={BUTTON_TEXT.createCourse}
-          size="small"
-          onClick={handleClick}
-        />
-      </div>
-
-      <Textarea
-        name="courseDescription"
-        placeholder={PLACEHOLDER.enterDescr}
-        labelText={LABEL_TEXT.description}
+      <CourseForm 
+        creationDate={creationDate} 
+        authors={authors} 
+        onAddNewAuthor={addNewAuthor} 
+        onCancel={handleClick} 
       />
-      <div className={styles.infoWrapper}>
-        <div className={styles.container}>
-          <CourseInfo />
-        </div>
-        <div className={styles.container}>
-          <AuthorInfo />
-        </div>
-      </div>
     </div>
   );
 };
