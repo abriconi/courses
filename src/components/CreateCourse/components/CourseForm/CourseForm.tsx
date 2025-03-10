@@ -1,18 +1,25 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import styles from "./CourseForm.module.scss";
-import { durationFormatter } from "../../../../helpers";
+import { durationFormatter, generateId } from "../../../../helpers";
 import {
   LABEL_TEXT,
   PLACEHOLDER,
   BUTTON_TEXT,
+  ROUTES,
 } from "../../../../helpers/constants";
-import { AuthorsPicked, AuthorType, CourseType } from "../../../../helpers/interfaces";
+import {
+  AuthorsPicked,
+  AuthorType,
+  CourseType,
+} from "../../../../helpers/interfaces";
 import { Button } from "../../../common/Button/Button";
 import { Input } from "../../../common/Input/Input";
 import { Textarea } from "../../../common/Textarea/Textarea";
 import { CreateAuthor } from "../../CreateAuthor/CreateAuthor";
 import { AuthorsList } from "../AuthorsList/AuthorsList";
 import { SelectedAuthors } from "../SelectedAuthors/SelectedAuthors";
+import { useNavigate } from "react-router-dom";
+import { useCallback } from "react";
 
 interface CourseFormProps {
   creationDate: string;
@@ -29,7 +36,7 @@ export const CourseForm: React.FC<CourseFormProps> = ({
 }) => {
   const { handleSubmit, control, watch } = useForm<CourseType>({
     defaultValues: {
-      id: "123",
+      id: generateId(),
       title: "",
       description: "",
       creationDate,
@@ -37,6 +44,9 @@ export const CourseForm: React.FC<CourseFormProps> = ({
       authors: [],
     },
   });
+
+  const navigate = useNavigate();
+  const handleClick = useCallback(() => navigate(ROUTES.home), [navigate]);
 
   const watchDuration = watch("duration");
 
@@ -55,6 +65,7 @@ export const CourseForm: React.FC<CourseFormProps> = ({
 
   const onSubmit = (data: CourseType) => {
     console.log("newCourse", data);
+    handleClick();
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formWrapper}>
