@@ -1,24 +1,48 @@
-
+import { useMemo } from "react";
+import { filterAuthorsById } from "../../../../helpers";
 import { BUTTON_TEXT } from "../../../../helpers/constants";
-import { AuthorType } from "../../../../helpers/interfaces";
+import { AuthorsPicked, AuthorType } from "../../../../helpers/interfaces";
 import { Button } from "../../../common/Button/Button";
 import styles from "./SelectedAuthors.module.scss";
 
 interface SelectedAuthorsProps {
-  pickedAuthors: AuthorType[];
-  onDeleteAuthor: (author: AuthorType) => void;
+  authors: AuthorType[];
+  pickedAuthorsId: AuthorsPicked[];
+  onDeleteAuthor: (index: number) => void;
 }
 
-export const SelectedAuthors: React.FC<SelectedAuthorsProps> = ({ pickedAuthors, onDeleteAuthor }) => {
+export const SelectedAuthors: React.FC<SelectedAuthorsProps> = ({
+  pickedAuthorsId,
+  onDeleteAuthor,
+  authors,
+}) => {
+  const pickedAuthors = useMemo(
+    () => filterAuthorsById(pickedAuthorsId, authors),
+    [pickedAuthorsId],
+  );
+
+  if (pickedAuthorsId.length === 0) {
+    return (
+      <div className={styles.authors}>
+        <h2 className={styles.header}>Course Authors</h2>
+        <p className={styles.text}>No authors picked</p>
+      </div>
+    );
+  }
   return (
-    <div className={styles.selectedAuthors}>
-      <h2>Course Authors</h2>
-      {pickedAuthors.map((author) => (
-        <div key={author.id}>
-          <span>{author.name}</span>
-          <Button name={BUTTON_TEXT.deleteAuthor} onClick={() => onDeleteAuthor(author)} />
-        </div>
-      ))}
+    <div className={styles.authors}>
+      <h2 className={styles.header}>Course Authors</h2>
+      <div className={styles.authors__list}>
+        {pickedAuthors.map((author, index) => (
+          <div key={author.id} className={styles.author}>
+            <span>{author.name}</span>
+            <Button
+              name={BUTTON_TEXT.deleteAuthor}
+              onClick={() => onDeleteAuthor(index)}
+            />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

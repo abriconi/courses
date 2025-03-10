@@ -9,10 +9,11 @@ export enum BUTTON_TEXT {
     createCourse = "Create course",
     createAuthor = "Create author",
     addAuthor = "Add author",
+    deleteAuthor = "Delete author",
 }
 export enum PLACEHOLDER {
     enterTitle = "Enter course name",
-    enterDescr = "Enter description",
+    enterDescription = "Enter description",
     enterAuthor = "Enter author name",
     enterDuration = "Enter duration in minutes",
 }

@@ -1,0 +1,32 @@
+@use "../../../../assets/variables" as *;
+
+.authors {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    .header {
+        margin: 0;
+        font-size: $font-size-large;
+        align-self: center;
+    }
+    .text {
+        align-self: center;
+    }
+
+    .authors__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin: 0;
+
+        .author {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            justify-content: space-between;
+            align-items: center
+        }
+    }
+}

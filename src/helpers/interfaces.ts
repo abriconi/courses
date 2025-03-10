@@ -10,3 +10,8 @@ export interface AuthorType {
     id: string;
     name: string;
 }
+
+export interface AuthorsPicked {
+    authorId: string, 
+    id: string
+}
