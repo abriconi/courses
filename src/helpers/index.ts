@@ -1,6 +1,10 @@
-import { AuthorsPicked, AuthorType, CourseType } from "./interfaces";
+import { AuthorsPicked, AuthorType } from "./interfaces";
 
-export const durationFormatter = (duration: number): string => {
+export const durationFormatter = (duration: number | undefined): string => {
+    if (duration === undefined || duration < 0) {
+        return "00:00";
+    };
+
     const hours = Math.floor(duration / 60);
     const minutes = duration % 60;
 
@@ -22,7 +26,7 @@ export const dateFormatter = (input: string): string => {
 export const createDate = () => {
     const today = new Date();
     const day = today.getDate();
-    const month = today.getMonth() + 1; // Months are 0-based, so adding 1
+    const month = today.getMonth() + 1;
     const year = today.getFullYear();
 
     return `${month}/${day}/${year}`;

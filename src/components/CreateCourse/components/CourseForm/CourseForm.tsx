@@ -1,6 +1,4 @@
 import { useForm, useFieldArray } from "react-hook-form";
-import { useState } from "react";
-
 import styles from "./CourseForm.module.scss";
 import { durationFormatter } from "../../../../helpers";
 import {
@@ -8,7 +6,7 @@ import {
   PLACEHOLDER,
   BUTTON_TEXT,
 } from "../../../../helpers/constants";
-import { AuthorType, CourseType } from "../../../../helpers/interfaces";
+import { AuthorsPicked, AuthorType, CourseType } from "../../../../helpers/interfaces";
 import { Button } from "../../../common/Button/Button";
 import { Input } from "../../../common/Input/Input";
 import { Textarea } from "../../../common/Textarea/Textarea";
@@ -35,7 +33,7 @@ export const CourseForm: React.FC<CourseFormProps> = ({
       title: "",
       description: "",
       creationDate,
-      duration: 0,
+      duration: undefined,
       authors: [],
     },
   });
@@ -47,22 +45,17 @@ export const CourseForm: React.FC<CourseFormProps> = ({
     name: "authors",
   });
 
-  const [pickedAuthors, setPickedAuthors] = useState<AuthorType[]>([]);
-
   const addAuthor = (author: AuthorType) => {
-    append({ authors: author.id });
-    setPickedAuthors((prev) => [...prev, author]);
+    append({ authorId: author.id });
   };
 
-  const deleteAuthor = (author: AuthorType) => {
-    remove(pickedAuthors.findIndex((a) => a.id === author.id));
-    setPickedAuthors((prev) => prev.filter((a) => a.id !== author.id));
+  const deleteAuthor = (index: number) => {
+    remove(index);
   };
 
   const onSubmit = (data: CourseType) => {
     console.log("newCourse", data);
   };
-
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.formWrapper}>
       <div className={styles.createTitle}>
@@ -79,7 +72,7 @@ export const CourseForm: React.FC<CourseFormProps> = ({
       </div>
 
       <Textarea
-        placeholder={PLACEHOLDER.enterDescr}
+        placeholder={PLACEHOLDER.enterDescription}
         labelText={LABEL_TEXT.description}
         control={control}
         name="description"
@@ -105,11 +98,10 @@ export const CourseForm: React.FC<CourseFormProps> = ({
         <div className={styles.authors__add}>
           <AuthorsList authors={authors} onAddAuthor={addAuthor} />
           <SelectedAuthors
-            pickedAuthors={pickedAuthors}
-            onDeleteAuthor={deleteAuthor}
+            pickedAuthorsId={fields as AuthorsPicked[]}
+            onDeleteAuthor={(index) => deleteAuthor(index)}
+            authors={authors}
           />
-
-          <Button name={BUTTON_TEXT.addAuthor} onClick={onCancel} />
         </div>
       </div>
     </form>
