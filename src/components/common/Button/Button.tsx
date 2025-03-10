@@ -1,21 +1,21 @@
 import styles from "./Button.module.scss";
+
 interface ButtonProps {
   name: string;
-  size: "small" | "large";
-  onClick: () => void;
+  onClick?: () => void;
   align?: boolean;
+  type?: "submit" | "button";
 }
 export const Button: React.FC<ButtonProps> = ({
   name,
-  size,
   onClick,
   align,
+  type = "button"
 }: ButtonProps) => {
   return (
-    <button type="submit"
+    <button type={type}
       onClick={onClick}
       className={`${styles.button} 
-        ${size === "small" ? styles.small : styles.large}
         ${align ? styles.alignCenter : ""}
     `}
     >

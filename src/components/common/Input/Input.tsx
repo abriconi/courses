@@ -1,28 +1,35 @@
+import { Control, Controller } from "react-hook-form";
 import styles from "./Input.module.scss";
 
 interface InputType {
   placeholderText: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  value: string;
   labelText?: string;
+  name: string;
+  control: Control<any>;
 }
 
 export const Input: React.FC<InputType> = ({
   labelText,
   placeholderText,
-  onChange,
-  value,
+  name,
+  control,
 }) => {
   return (
-      <label className={styles.inputWrapper}>
-        {labelText && <span className={styles.title}>{labelText}</span>}
-        <input
-          type="text"
-          value={value}
-          onChange={onChange}
-          className={styles.input}
-          placeholder={placeholderText}
-        />
-      </label>
+    <label className={styles.inputWrapper}>
+      {labelText && <span className={styles.title}>{labelText}</span>}
+      <Controller
+        control={control}
+        name={name}
+        defaultValue=""
+        render={({ field }) => (
+          <input
+            type="text"
+            {...field}
+            className={styles.input}
+            placeholder={placeholderText}
+          />
+        )}
+      />
+    </label>
   );
 };

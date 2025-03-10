@@ -13,7 +13,7 @@ export const Header = () => {
       </div>
       <div className={styles.loginWrapper}>
         <p className={styles.userName}>Dave</p>
-        <Button name={LOGIN_TEXT.login} size="small" onClick={onClick} />
+        <Button name={LOGIN_TEXT.login} onClick={onClick} />
       </div>
     </header>
   );
