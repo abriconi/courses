@@ -43,7 +43,6 @@ export const Card: React.FC<CardType> = ({ course, authors }) => {
         </div>
         <Button
           name={BUTTON_TEXT.showCourse}
-          size="small"
           onClick={showCourse}
           align
           aria-label="Show Course"

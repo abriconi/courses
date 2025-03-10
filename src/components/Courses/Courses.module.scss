@@ -8,4 +8,17 @@
     border: $border;
     border-color: $primary-color;
     border-radius: $border-radius;
+
+    .container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    
+        .searchBar {
+            display: flex;
+            flex-direction: row;
+            gap: 25px;
+            width: 50%;
+        }
+    }
 }
