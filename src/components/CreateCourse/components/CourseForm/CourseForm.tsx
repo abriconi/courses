@@ -1,6 +1,10 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import styles from "./CourseForm.module.scss";
-import { durationFormatter, generateId } from "../../../../helpers";
+import {
+  durationFormatter,
+  generateId,
+  transformAuthorArray,
+} from "../../../../helpers";
 import {
   LABEL_TEXT,
   PLACEHOLDER,
@@ -11,6 +15,7 @@ import {
   AuthorsPicked,
   AuthorType,
   CourseType,
+  newCourseType,
 } from "../../../../helpers/interfaces";
 import { Button } from "../../../common/Button/Button";
 import { Input } from "../../../common/Input/Input";
@@ -19,24 +24,22 @@ import { CreateAuthor } from "../../CreateAuthor/CreateAuthor";
 import { AuthorsList } from "../AuthorsList/AuthorsList";
 import { SelectedAuthors } from "../SelectedAuthors/SelectedAuthors";
 import { useNavigate } from "react-router-dom";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import { mockedCoursesList } from "../../../../helpers/mockedData";
 
 interface CourseFormProps {
   creationDate: string;
   authors: AuthorType[];
   onAddNewAuthor: (author: AuthorType) => void;
-  onCancel: () => void;
 }
 
 export const CourseForm: React.FC<CourseFormProps> = ({
   creationDate,
   authors,
   onAddNewAuthor,
-  onCancel,
 }) => {
-  const { handleSubmit, control, watch } = useForm<CourseType>({
+  const { handleSubmit, control, watch } = useForm<newCourseType>({
     defaultValues: {
-      id: generateId(),
       title: "",
       description: "",
       creationDate,
@@ -55,16 +58,32 @@ export const CourseForm: React.FC<CourseFormProps> = ({
     name: "authors",
   });
 
-  const addAuthor = (author: AuthorType) => {
+  const [filteredAuthors, setFilteredAuthors] = useState(authors);
+
+  const addAuthor = (author: AuthorType, authors: AuthorType[]) => {
+    const filteredArray = authors.filter(
+      (authorInArray) => author.id !== authorInArray.id,
+    );
+    setFilteredAuthors(filteredArray);
     append({ authorId: author.id });
   };
 
-  const deleteAuthor = (index: number) => {
+  const deleteAuthor = (index: number, author: AuthorType) => {
+    setFilteredAuthors((filteredArray) => [...filteredArray, author]);
     remove(index);
   };
 
-  const onSubmit = (data: CourseType) => {
-    console.log("newCourse", data);
+  const onSubmit = (data: newCourseType) => {
+    const courseAuthors: string[] = transformAuthorArray(data.authors);
+    const newCourse: CourseType = {
+      id: generateId(),
+      title: data.title,
+      description: data.description,
+      creationDate: data.creationDate,
+      duration: data.duration,
+      authors: courseAuthors,
+    };
+    mockedCoursesList.push(newCourse);
     handleClick();
   };
   return (
@@ -107,10 +126,10 @@ export const CourseForm: React.FC<CourseFormProps> = ({
         </div>
 
         <div className={styles.authors__add}>
-          <AuthorsList authors={authors} onAddAuthor={addAuthor} />
+          <AuthorsList authors={filteredAuthors} onAddAuthor={addAuthor} />
           <SelectedAuthors
             pickedAuthorsId={fields as AuthorsPicked[]}
-            onDeleteAuthor={(index) => deleteAuthor(index)}
+            onDeleteAuthor={deleteAuthor}
             authors={authors}
           />
         </div>

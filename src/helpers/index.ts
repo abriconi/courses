@@ -1,4 +1,5 @@
 import { AuthorsPicked, AuthorType } from "./interfaces";
+import { v4 as uuidv4 } from 'uuid';
 
 export const durationFormatter = (duration: number | undefined): string => {
     if (duration === undefined || duration < 0) {
@@ -32,10 +33,12 @@ export const createDate = () => {
     return `${month}/${day}/${year}`;
 }
 
-export const getAuthorNames = (authorIds: string[], authors: AuthorType[]): string => 
-    authorIds
-        .map(id => authors.find(author => author.id === id)?.name || "Unknown")
-        .join(", ");
+export const getAuthorNames = (authorIds: string[], authors: AuthorType[]): string => {
+    const authorNames = authorIds
+    .map(id => authors.find(author => author.id === id)?.name)
+    .join(", "); 
+    return authorNames;
+}
 
 export const findByTitle = <T extends { title: string }>(title: string, itemsList: T[]): T[] => {
     return itemsList.filter((item) =>
@@ -52,3 +55,11 @@ export const filterAuthorsById = (authorIds: AuthorsPicked[], authors: { id: str
     const ids = authorIds.map(author => author.authorId);
     return authors.filter(author => ids.includes(author.id));    
 }
+
+export const generateId = (): string => {
+    return uuidv4();
+}
+
+export const transformAuthorArray = (authors: { authorId: string }[]): string[] => {
+    return authors.map((author) => author.authorId);
+  };

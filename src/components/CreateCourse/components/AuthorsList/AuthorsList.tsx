@@ -5,7 +5,7 @@ import styles from "./AuthorsList.module.scss";
 
 interface AuthorsListProps {
   authors: AuthorType[];
-  onAddAuthor: (author: AuthorType) => void;
+  onAddAuthor: (author: AuthorType, authors: AuthorType []) => void;
 }
 
 export const AuthorsList: React.FC<AuthorsListProps> = ({ authors, onAddAuthor }) => {
@@ -16,7 +16,7 @@ export const AuthorsList: React.FC<AuthorsListProps> = ({ authors, onAddAuthor }
         {authors.map((author) => (
           <li key={author.id} className={styles.author}>
             <span>{author.name}</span>
-            <Button name={BUTTON_TEXT.addAuthor} onClick={() => onAddAuthor(author)} />
+            <Button name={BUTTON_TEXT.addAuthor} onClick={() => onAddAuthor(author, authors)} />
           </li>
         ))}
       </ul>

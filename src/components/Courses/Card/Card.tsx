@@ -20,6 +20,7 @@ export const Card: React.FC<CardType> = ({ course, authors }) => {
     () => getAuthorNames(course.authors, authors),
     [course, authors],
   );
+  
   const duration = durationFormatter(course.duration);
   const creationDate = dateFormatter(course.creationDate);
 
@@ -32,7 +33,7 @@ export const Card: React.FC<CardType> = ({ course, authors }) => {
       <div className={styles.additionalInfo}>
         <div className={styles.courseInfo}>
           <p className={styles.categoryName}>
-            {COURSE_INFO.authors}: <span>{authorNames || "Unknown"}</span>
+            {COURSE_INFO.authors}: <span>{authorNames}</span>
           </p>
           <p className={styles.categoryName}>
             {COURSE_INFO.duration}: <span>{duration}</span>

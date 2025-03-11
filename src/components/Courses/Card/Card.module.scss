@@ -9,7 +9,6 @@ span {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 30px;
     border: $border;
     border-radius: $border-radius;
     border-color: $secondary-color;
@@ -19,18 +18,20 @@ span {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        max-width: 60%;
+        width: 70%;
     }
     .additionalInfo {
         display: flex;
         flex-direction: column;
         gap: 20px;
-        max-width: 30%;
+        width: 25%;
+        
 
         .courseInfo {
             display: flex;
             flex-direction: column;
             gap: 5px;
+            align-items: flex-start;
         }
     }
 }

@@ -8,7 +8,7 @@ import styles from "./SelectedAuthors.module.scss";
 interface SelectedAuthorsProps {
   authors: AuthorType[];
   pickedAuthorsId: AuthorsPicked[];
-  onDeleteAuthor: (index: number) => void;
+  onDeleteAuthor: (index: number, author: AuthorType) => void;
 }
 
 export const SelectedAuthors: React.FC<SelectedAuthorsProps> = ({
@@ -38,7 +38,7 @@ export const SelectedAuthors: React.FC<SelectedAuthorsProps> = ({
             <span>{author.name}</span>
             <Button
               name={BUTTON_TEXT.deleteAuthor}
-              onClick={() => onDeleteAuthor(index)}
+              onClick={() => onDeleteAuthor(index, author)}
             />
           </div>
         ))}
