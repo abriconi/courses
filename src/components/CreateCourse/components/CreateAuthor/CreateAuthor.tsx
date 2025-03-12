@@ -1,13 +1,9 @@
 import { useForm } from "react-hook-form";
-import {
-  BUTTON_TEXT,
-  LABEL_TEXT,
-  PLACEHOLDER,
-} from "../../../helpers/constants";
-import { AuthorType } from "../../../helpers/interfaces";
-import { Input } from "../../common/Input/Input";
-import { Button } from "../../common/Button/Button";
 import styles from "./CreateAuthor.module.scss";
+import { BUTTON_TEXT, LABEL_TEXT, PLACEHOLDER } from "../../../../helpers/constants";
+import { AuthorType } from "../../../../helpers/interfaces";
+import { Button } from "../../../common/Button/Button";
+import { Input } from "../../../common/Input/Input";
 
 interface CreateAuthor {
   onAddAuthor: (author: AuthorType) => void;

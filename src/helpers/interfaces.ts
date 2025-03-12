@@ -24,3 +24,9 @@ export interface AuthorsPicked {
     authorId: string, 
     id: string
 }
+
+export interface RegistrationType {
+    name: string,
+    email: string,
+    password: string,
+}

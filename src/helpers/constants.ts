@@ -10,12 +10,16 @@ export enum BUTTON_TEXT {
     createAuthor = "Create author",
     addAuthor = "Add author",
     deleteAuthor = "Delete author",
+    registration = "Registration",
 }
 export enum PLACEHOLDER {
     enterTitle = "Enter course name",
     enterDescription = "Enter description",
     enterAuthor = "Enter author name",
     enterDuration = "Enter duration in minutes",
+    enterName = "Enter name",
+    enterEmail = "Enter email",
+    enterPassword = "Enter password"
 }
 export enum TEXT {
     authorEmpty = "Author list is empty"
@@ -36,4 +40,11 @@ export enum LABEL_TEXT {
 export enum ROUTES {
     home = "/",
     courses = "/create-courses",
+    registration = "/registration",
+}
+
+export enum REGISTRATION_LABEL {
+    name = "Name",
+    email = "Email",
+    password = "Password"
 }
