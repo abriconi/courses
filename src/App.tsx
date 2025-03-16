@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { ROUTES } from "./helpers/constants";
 import { Registration } from "./components/Registration/Registration";
+import { Login } from "./components/Login/Login";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Header />
         <Routes>
           <Route path={ROUTES.registration} element={<Registration />} />
+          <Route path={ROUTES.login} element={<Login />} />
           <Route path={ROUTES.courses} element={<CreateCourse />} />
           <Route index element={<Courses />} />
           <Route path="*" element={<Navigate to={ROUTES.home} />} />

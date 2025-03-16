@@ -1,0 +1,41 @@
+
+@use "../../assets/variables" as *;
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    padding: 25px;
+    border: $border;
+    border-color: $primary-color;
+    border-radius: $border-radius;
+    height: 100%;
+    
+    .form {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        width: 30%;
+        align-items: center;
+    }
+    .header {
+        font-size: $font-size-medium;
+    }
+    .link {
+        text-decoration: none;
+        cursor: pointer;
+        color: $primary-color;
+    }
+    .error {
+        color: $error-color;
+        font-size: $font-size-small;
+        margin-top: 10px;
+      }
+      
+      .success {
+        color: $success-color;
+        font-size: $font-size-small;
+        margin-top: 10px;
+      }
+      
+}
