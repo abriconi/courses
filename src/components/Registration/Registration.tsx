@@ -3,11 +3,14 @@ import { Input } from "../common/Input/Input";
 import { Button } from "../common/Button/Button";
 import {
   BUTTON_TEXT,
+  MAIN_URL,
   PLACEHOLDER,
   REGISTRATION_LABEL,
+  ROUTES,
 } from "../../helpers/constants";
 import { RegistrationType } from "../../helpers/interfaces";
 import { useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
 
 export const Registration = () => {
   const { handleSubmit, control } = useForm<RegistrationType>({
@@ -24,7 +27,7 @@ export const Registration = () => {
       email: data.email,
     };
 
-    const response = await fetch("http://localhost:4000/register", {
+    const response = await fetch(`${MAIN_URL}register`, {
       method: "POST",
       body: JSON.stringify(newUser),
       headers: {
@@ -33,13 +36,15 @@ export const Registration = () => {
     });
 
     const result = await response.json();
-    console.log("result", result);
+    if (result) {
+      console.log("result", result);
+    }
   };
 
   return (
     <div className={styles.wrapper}>
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <h1>Registration</h1>
+        <h1 className={styles.header}>Registration</h1>
         <Input
           placeholderText={PLACEHOLDER.enterName}
           labelText={REGISTRATION_LABEL.name}
@@ -57,9 +62,16 @@ export const Registration = () => {
           labelText={REGISTRATION_LABEL.password}
           name="password"
           control={control}
+          type="password"
         />
         <Button type="submit" name={BUTTON_TEXT.registration} />
       </form>
+      <p>
+        If you have an account you could{" "}
+        <Link to={ROUTES.login} className={styles.link}>
+          Login
+        </Link>
+      </p>
     </div>
   );
 };

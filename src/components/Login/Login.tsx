@@ -4,6 +4,7 @@ import { Button } from "../common/Button/Button";
 import {
   BUTTON_TEXT,
   MAIN_URL,
+  MESSAGE_TEXT,
   PLACEHOLDER,
   REGISTRATION_LABEL,
   ROUTES,
@@ -11,12 +12,14 @@ import {
 } from "../../helpers/constants";
 import { RegistrationType } from "../../helpers/interfaces";
 import { useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export const Login = () => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
   const { handleSubmit, control } = useForm<RegistrationType>({
     defaultValues: {
       email: "",
@@ -42,19 +45,19 @@ export const Login = () => {
         const result = await response.json();
         if (result && result.result) {
           window.localStorage.setItem(TOKEN, result.result);
-          setSuccessMessage("You have successfully logged in!");
+          setSuccessMessage(MESSAGE_TEXT.LOGIN_SUCCESS);
           setErrorMessage(null);
+          navigate(ROUTES.home);
         } else {
-          console.error("Invalid response from the server");
-          setErrorMessage("Invalid login credentials");
+          setErrorMessage(MESSAGE_TEXT.LOGIN_ERROR);
           setSuccessMessage(null);
         }
       } else {
-        setErrorMessage("Login failed. Please try again.");
+        setErrorMessage(MESSAGE_TEXT.LOGIN_FAILED);
         setSuccessMessage(null);
       }
     } catch (error) {
-      setErrorMessage("An error occurred. Please check your connection.");
+      setErrorMessage(MESSAGE_TEXT.NETWORK_ERROR);
       setSuccessMessage(null);
     }
   };
@@ -78,6 +81,7 @@ export const Login = () => {
           labelText={REGISTRATION_LABEL.password}
           name="password"
           control={control}
+          type={showPassword ? "text" : "password"}
         />
         <Button type="submit" name={BUTTON_TEXT.login} />
       </form>

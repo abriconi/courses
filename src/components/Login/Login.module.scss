@@ -15,8 +15,8 @@
         display: flex;
         flex-direction: column;
         gap: 15px;
-        width: 30%;
         align-items: center;
+        width: 30%;
     }
     .header {
         font-size: $font-size-medium;
@@ -30,12 +30,14 @@
         color: $error-color;
         font-size: $font-size-small;
         margin-top: 10px;
-      }
+    }
       
-      .success {
+    .success {
         color: $success-color;
         font-size: $font-size-small;
         margin-top: 10px;
-      }
+    }
       
 }
+
+  
